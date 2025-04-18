@@ -9,3 +9,18 @@ data "aws_subnets" "default" {
     values = [data.aws_vpc.default.id]
   }
 }
+
+data "aws_ami" "latest_amazon_linux" {
+  most_recent = true
+  owners      = ["amazon"]
+
+  filter {
+    name   = "name"
+    values = ["amzn2-ami*"]
+  }
+
+  filter {
+    name   = "state"
+    values = ["available"]
+  }
+}
